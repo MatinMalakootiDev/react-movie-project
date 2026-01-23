@@ -1,16 +1,53 @@
-# React + Vite
+# React Movie Project
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A responsive movie application built with React, Vite, and Tailwind CSS, fetching data dynamically from an API and providing an interactive user experience.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 📖 Overview
+This project is a front-end React application that displays movie information retrieved from an external API.  
+Users can search for movies using an active search bar and view details such as posters, ratings, and release dates.  
+The project is built with **Vite** for fast bundling, **Tailwind CSS** for styling, and modern React practices including functional components and hooks.
 
-## React Compiler
+---
 
-The React Compiler is currently not compatible with SWC. See [this issue](https://github.com/vitejs/vite-plugin-react/issues/428) for tracking the progress.
+## ✨ Key Features
+- Responsive layout built with Tailwind CSS
+- Fetching data from an external movie API
+- Active search bar to filter movies in real-time
+- Display of movie posters, ratings, and release dates
+- Modular React components with clean structure
+- Functional components and React Hooks (useState, useEffect)
+- Error handling for API requests
+- Mobile-first design
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## 🛠 Tech Stack
+- React (Functional Components, Hooks)
+- Vite (Fast Development Bundler)
+- Tailwind CSS (Utility-first Styling)
+- JavaScript (ES6+)
+- Fetch API / Axios
+- Git & GitHub
+
+---
+
+## 🎯 Goals / What I Learned
+- Fetching and displaying data from an external API
+- Implementing a live search feature with React
+- Organizing components for scalability and reusability
+- Using React state and effects to manage dynamic UI
+- Applying Tailwind CSS for responsive design
+- Understanding the workflow of modern front-end projects with Vite
+
+---
+
+## 🌐 Live Demo
+()
+
+---
+
+## 🖼 Screenshots
+![Desktop View](./screenshots/desktop.png)
+
