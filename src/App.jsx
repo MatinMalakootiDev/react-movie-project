@@ -4,10 +4,12 @@ import Spinner from './components/spinner'
 import MovieCard from './components/MovieCard'
 import LoadMore from './components/LoadMore'
 import { useDebounce } from 'react-use'
+import { updateSearchCount, getTrendingMovies } from './appwrite'
 
 const App = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [movieList, setMovieList] = useState([]);
+  const [trendingMovies, setTrendingMovies] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
@@ -15,6 +17,15 @@ const App = () => {
 
   // Debounce the search term to prevent making too many API requests
   useDebounce(() => setDebouncedSearchTerm(searchTerm), 500, [searchTerm]);
+
+  const loadTrendingMovies = async () => {
+    try {
+      const movies = await getTrendingMovies();
+      setTrendingMovies(movies);
+    } catch (error) {
+      console.error(`Error fetching trending movies: ${error}`);
+    }
+  }
 
   const fetchMovies = async (query = '', page = 1) => {
     setIsLoading(true)
@@ -37,6 +48,10 @@ const App = () => {
         setMovieList((prev) => (page === 1 ? data.data : [...prev, ...data.data]));
       }
 
+      if (query && data.data?.length > 0) {
+        updateSearchCount(query, data.data[0]);
+      }
+
     } catch (error) {
       console.error(`Error: ${error}`)
       setErrorMessage('خطا در دریافت اطلاعات. لطفا دوباره تلاش کنید.')
@@ -48,7 +63,11 @@ const App = () => {
   useEffect(() => {
     setCurrentPage(1)
     fetchMovies(debouncedSearchTerm, 1)
-  }, [debouncedSearchTerm])
+  }, [debouncedSearchTerm]);
+
+  useEffect(() => {
+    loadTrendingMovies();
+  }, []);
 
   const handleLoadMore = () => {
     const nextPage = currentPage + 1
@@ -70,8 +89,22 @@ const App = () => {
           <Search searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
         </header>
 
+        {trendingMovies.length > 0 && (
+          <section className="trending">
+            <h2>فیلم‌های محبوب</h2>
+            <ul className="text-left">
+              {trendingMovies.map((movie, index) => (
+                <li key={movie.$id}>
+                  <p>{index + 1}</p>
+                  <img src={movie.poster_url} alt={movie.title} />
+                </li>
+              ))}
+            </ul>
+          </section>
+        )}
+
         <section className="all-movies">
-          <h2 className="mt-[40px]">تمامی فیلم ها</h2>
+          <h2>تمامی فیلم ها</h2>
 
           {errorMessage ? (
             <p className="text-red-500">{errorMessage}</p>
