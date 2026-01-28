@@ -43,8 +43,6 @@ The project is built with **Vite** for fast bundling, **Tailwind CSS** for styli
 
 ---
 
-## 🌐 Live Demo
-()
 
 ---
 
